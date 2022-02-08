@@ -4,38 +4,39 @@ import com.spring.spring_boot_datajpa.dao.HeroesDotaRepository;
 import com.spring.spring_boot_datajpa.entity.HeroesDota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HeroesDotaServiceImpl implements HeroesDotaService {
 
     @Autowired
-    private HeroesDotaRepository heroesDotaDAO;
+    private HeroesDotaRepository heroesDotaRepository;
 
     @Override
-    @Transactional
     public List<HeroesDota> getAllHeroesDota() {
-        return heroesDotaDAO.getAllHeroesDota();
+        return heroesDotaRepository.findAll();
     }
 
     @Override
-    @Transactional
     public void saveHeroesDota(HeroesDota heroesDota) {
-        heroesDotaDAO.saveHeroesDota(heroesDota);
+        heroesDotaRepository.save(heroesDota);
     }
 
     @Override
-    @Transactional
     public HeroesDota getHeroesDota(int id) {
-        return heroesDotaDAO.getHeroesDota(id);
+        HeroesDota heroesDota = null;
+        Optional<HeroesDota> optional = heroesDotaRepository.findById(id);
+        if (optional.isPresent()) {
+            heroesDota = optional.get();
+        }
+        return heroesDota;
     }
 
     @Override
-    @Transactional
     public void deleteHeroesDota(int id) {
-        heroesDotaDAO.deleteHeroesDota(id);
+        heroesDotaRepository.deleteById(id);
     }
 
 
