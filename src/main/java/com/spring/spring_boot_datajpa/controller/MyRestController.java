@@ -46,4 +46,10 @@ public class MyRestController {
         heroesDotaService.deleteHeroesDota(id);
         return "heroes wit ID = " + id + " was deleted";
     }
+
+    @GetMapping("/heroes/name/{name}")
+    public List<HeroesDota> showFindByAllName(@PathVariable String name){
+        List<HeroesDota> heroesDotas = heroesDotaService.findAllByName(name);
+        return heroesDotas;
+    }
 }

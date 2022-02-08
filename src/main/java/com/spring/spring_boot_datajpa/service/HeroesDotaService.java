@@ -15,4 +15,6 @@ public interface HeroesDotaService {
     public HeroesDota getHeroesDota(int id);
 
     public void deleteHeroesDota(int id);
+
+    public List<HeroesDota> findAllByName(String name);
 }

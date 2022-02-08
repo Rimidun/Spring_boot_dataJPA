@@ -39,6 +39,11 @@ public class HeroesDotaServiceImpl implements HeroesDotaService {
         heroesDotaRepository.deleteById(id);
     }
 
+    @Override
+    public List<HeroesDota> findAllByName(String name) {
+        List<HeroesDota> heroesDotas = heroesDotaRepository.findAllByName(name);
+        return heroesDotas;
+    }
 
 }
 
